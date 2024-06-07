@@ -1,0 +1,38 @@
+{% extends "DeanUI.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/dash.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="content-section" id="home-section">
+    <div class="details">
+        <div class="recentOrders">
+            <div class="cardHeader">
+                <h2>New Queries</h2>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <td>Type</td>
+                        <td>Object</td>
+                        <td>Sender</td>
+                        <td>Date</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for query in queries %}
+                    <tr>
+                        <td>{{ query.type }}</td>
+                        <td>{{ query.subject }}</td>
+                        <td>{{ query.sender }}</td>
+                        <td>{{ query.date }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

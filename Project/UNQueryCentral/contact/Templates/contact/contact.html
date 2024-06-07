@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body>
+    <section class="sub-header">
+        <nav>
+            <a href="{% url 'home' %}"><img src="{% static 'Images/logo.png' %}" alt=""></a>
+            <div class="nav-links" id="navLinks">
+                <span class="material-symbols-outlined" onclick="hideMenu()">close</span>
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'home' %}">Queries</a></li>
+                    <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                    <li><a href="{% url 'home' %}">About Us</a></li>
+                </ul>  
+            </div>
+            <span class="material-symbols-outlined" onclick="showMenu()">menu</span>
+        </nav>
+        <h1>Contact Us</h1>
+    </section>
+
+    <section class="location">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4149.633509479995!2d13.540846147987988!3d7.420785412485535!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10f002a1b3347f77%3A0xb76e1e45f85da88c!2zVW5pdmVyc2l0w6kgZGUgTmdhb3VuZMOpcsOp!5e0!3m2!1sfr!2scm!4v1711660084786!5m2!1sfr!2scm" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </section>
+
+    <section class="contact-us">
+        <div class="row">
+            <div class="contact-col">
+                <div>
+                    <span class="material-symbols-outlined">home</span>
+                    <span>
+                        <h5>454, Ngaoundere</h5>
+                        <p>Ngaoundere, Adamawa, CA</p>
+                    </span>
+                </div>
+                <div>
+                    <span class="material-symbols-outlined">mail</span>
+                    <span>
+                        <h5>admin@gmail.com</h5>
+                        <p>Email us your query</p>
+                    </span>
+                </div>
+            </div>
+            <div class="contact-col">
+                <form method="post" action="{% url 'contact' %}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="hero-btn-red-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!------Footer------>
+    <section class="contact" id="about">
+        <h1>About <span>Us</span></h1>
+        <p>UNQueryCentral is a query submission and management platform intended for students at the University of Ngaoundéré <br>as well as administrative and academic staff. Its aim is to allow students to submit their requests, to follow <br> them in real life and for teachers to manage the different requests submitted through a dashboard.</p>
+        <div class="icons">
+        </div>
+    </section>
+
+    <section class="footer">
+        <div class="box-container">
+            <div class="box">
+                <h3>Links</h3>
+                <a href="https://www.univ-ndere.cm/"><span class="material-symbols-outlined">language</span>univ-ndere.cm</a>
+            </div>
+        </div>
+
+        <div class="credit"> <strong>Tous droits réservés - © 2024 UNQueryCentral</strong></div>
+    </section>
+    <script>
+        // Récupérer le paramètre 'success' de l'URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const success = urlParams.get('success');
+
+        // Si le paramètre 'success' est présent et vaut 'true', afficher la boîte de dialogue
+        if (success === 'true') {
+            alert('Your message has been sent successfully.');
+        }
+    </script>
+</body>
+</html>

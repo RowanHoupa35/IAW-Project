@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNQueryCentral</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+
+<body>
+    <section class="header">
+        <div id="menu-btn"></div>
+        <nav>
+            <a href="index.html"><img src="{% static 'images/logo.png' %}" alt=""></a>
+            <div class="nav-links" id="navLinks">
+                <span class="material-symbols-outlined" onclick="hideMenu()">close</span>
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="#queries">Queries</a></li>
+                    <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="{% url 'login' %}" id="login-btn">Login</a></li>
+                </ul>  
+            </div>
+            <span class="material-symbols-outlined" onclick="showMenu()">menu</span>
+        </nav>
+
+        <div class="text-box">
+            <h1>Welcome To <span>UNQueryCentral</span></h1>
+            <p>Query management and submission platform for students at the University of Ngaoundéré</p>
+            <a href="{% url 'login' %}" id="login-btn" class="hero-btn">Submit a Query</a>
+        </div>
+    </section>
+
+    <!--Types of Queries-->
+    <section class="queries" id="queries">
+        <h1>Different Types Of <span>Queries</span></h1>
+        <p>See below the different types of queries that can be submitted</p>
+
+        <div class="row">
+            <div class="query-col">
+                <h3>Academic Queries</h3>
+                <p>This type of request concerns questions related to the academic life of students, such as requests for advice for choosing courses, requests for grade revision (CC, TP, TPE, EE), requests for registration for specific courses, program transfer requests, etc. Students can submit these queries to get help or information about their studies.</p>
+            </div>
+            <div class="query-col">
+                <h3>Administrative Queries</h3>
+                <p>These requests concern administrative requests, such as requests for documentation (prospectus, payment receipts), requests for certificates (school certificates, transcripts, diplomas, etc.). Students may submit these requests to obtain information or administrative services from the university.</p>
+            </div>
+            <div class="query-col">
+                <h3>Social Queries</h3>
+                <p>These requests concern students' social and personal issues, such as requests for financial aid, requests for on-campus housing, requests for medical or psychological assistance, requests for support for family problems, etc. Students can submit these requests for support in different aspects of their student life.</p>
+            </div>
+            <div class="query-col">
+                <h3>Cultural Queries</h3>
+                <p>This type of request concerns cultural and sporting activities organized by the university or student associations, such as requests for participation in cultural events, requests for support for artistic or cultural projects, requests for information on student clubs and associations, etc. Students can submit these requests to get involved in the cultural life of the university.</p>
+            </div>
+        </div>
+    </section>
+
+    <!--Contact Us-->
+    <section class="cta" id="contact">
+        <h1>For any questions, <span>Contact Us</span></h1>
+        <a href="{% url 'contact' %}" class="hero-btn">CONTACT US</a>
+    </section>
+
+    <!---Footer-->
+    <section class="contact" id="about">
+        <h1>About <span>Us</span></h1>
+        <p>UNQueryCentral is a query submission and management platform intended for students at the University of Ngaoundéré <br>as well as administrative and academic staff. Its aim is to allow students to submit their requests, to follow <br> them in real life and for teachers to manage the different requests submitted through a dashboard.</p>
+    </section>
+
+    <section class="footer">
+        <div class="box-container">
+            <div class="box">
+                <h3>Links</h3>
+                <a href="https://www.univ-ndere.cm/"><span class="material-symbols-outlined">language</span>univ-ndere.cm</a>
+            </div>
+        </div>
+
+        <div class="credit"> <strong>Tous droits réservés - © 2024 UNQueryCentral</strong></div>
+    </section>
+</body>
+</html>

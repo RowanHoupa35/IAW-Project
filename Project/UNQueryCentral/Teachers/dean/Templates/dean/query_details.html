@@ -1,0 +1,29 @@
+<!-- Pop-up pour visualiser et affecter une requête -->
+<div id="queryPopup" class="popupaf" style="display: none;">
+    <div class="popup-content">
+        <span class="close-btn" id="closePopup">&times;</span>
+        <h2>Détails de la Requête</h2>
+        <div class="request">
+            <p><strong>Nom de l'étudiant:</strong> <span id="studentName">{{ student_name }}</span></p>
+            <p><strong>Adresse e-mail de l'étudiant:</strong> <span id="studentEmail">{{ student_email }}</span></p>
+            <p><strong>Département de l'étudiant:</strong> <span id="studentDepartment">{{ student_department }}</span></p>
+            <p><strong>Type de requête:</strong> <span id="requestType">{{ request_type }}</span></p>
+            <p><strong>Objet de la requête:</strong> <span id="requestSubject">{{ request_subject }}</span></p>
+            <p><strong>Description/Contenu de la requête:</strong></p>
+            <p id="requestContent">{{ request_content }}</p>
+            <p><strong>Fichiers joints:</strong></p>
+            <ul id="attachedFiles">
+                {% for file in attached_files %}
+                <li><a href="{{ file.url }}" target="_blank">{{ file.name }}</a></li>
+                {% endfor %}
+            </ul>
+            <label for="departmentHead">Affecter au chef de département:</label>
+            <select id="departmentHead">
+                <option value="chef1@example.com">Chef Département Informatique</option>
+                <option value="chef2@example.com">Chef Département Mathématiques</option>
+                <option value="chef3@example.com">Chef Département Physique</option>
+            </select>
+            <button id="assignButton">Affecter la requête</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up page</title>
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body>
+    <div class="overlay">
+        <div class="popup">
+            <h1>Inscrivez-Vous sur <span>UNQueryCentral</span></h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ user_form.as_p }}
+                <!-- Boutons radio pour le choix de la catégorie -->
+                <label><input type="radio" name="category" value="student" onclick="showFields('student')"> Étudiant</label>
+                <label><input type="radio" name="category" value="teacher" onclick="showFields('teacher')"> Enseignant</label>
+                <label><input type="radio" name="category" value="staff" onclick="showFields('staff')"> Personnel</label><br>
+                
+                <!-- Champs spécifiques pour étudiants -->
+                <div id="student-fields" class="category-fields" style="display: none;">
+                    <input type="text" id="student-id" placeholder="Matricule" required><br>
+                    <select id="school">
+                        <option value="" disabled selected>Choisir une école</option>
+                        <!-- Options d'écoles -->
+                        <option value="Ecole de Génie Chimique et des Industries Minérales (EGCIM)">Ecole de Génie Chimique et des Industries Minérales (EGCIM)</option>
+                        <option value="Ecole de Géologie et d'Exploitation Minière (EGEM)">Ecole de Géologie et d'Exploitation Minière (EGEM)</option>
+                        <option value="Ecole Nationale Supérieure des Sciences Agro-industrielles (ENSAI)">Ecole Nationale Supérieure des Sciences Agro-industrielles (ENSAI)</option>
+                        <option value="Ecole des Sciences et de Médecine vétérinaire (ESMV)">Ecole des Sciences et de Médecine vétérinaire (ESMV)</option>
+                        <option value="Institut Universitaire des Technologies (IUT)">Institut Universitaire des Technologies (IUT)</option>
+                    </select><br>
+                    <select id="faculty-student" name="faculty_student">
+                        <option value="" disabled selected>Choisir votre faculté</option>
+                        <!-- Options de facultés -->
+                        <option value="FALSH" class="faculty-option">Faculté des Arts des Lettres et des Sciences Humaines (FALSH)</option>
+                        <option value="FS" class="faculty-option">Faculté des Sciences (FS)</option>
+                        <option value="FSE" class="faculty-option">Faculté des Sciences de l'Education (FSE)</option>
+                        <option value="FSEG" class="faculty-option">Faculté des Sciences Economiques et de Gestion (FSEG)</option>
+                        <option value="FSJP" class="faculty-option">Faculté des Sciences Juridiques et Politiques (FSJP)</option>
+                    </select>
+                    <select id="department-student" name="department_student">
+                        <option value="" disabled selected>Choisir votre département</option>
+                        <option value="DEP1" class="department-option FS">Département de Chimie (CH)</option>
+                        <option value="DEP3" class="department-option FS">Département des Energies Renouvelables (ER) </option>
+                        <option value="DEP4" class="department-option FS">Département de Mathématiques et Informatique (MI) </option>
+                        <option value="DEP5" class="department-option FS">Département de Physique (PH) </option>
+                        <option value="DEP6" class="department-option FS">Département des Sciences Biologiques (BIO) </option>
+                        <option value="DEP7" class="department-option FS">Département des Sciences Biomédicales (SBM) </option>
+                        <option value="DEP8" class="department-option FS">Département des Sciences de la Terre (ST)</option>
+                        <option value="DEP9" class="department-option FS">Département des Sciences et Techniques d'Agriculture Biologiques (STAB)</option>
+                        <option value="DEP10" class="department-option FSEG">Département de Comptabilité et Finance</option>
+                        <option value="DEP11" class="department-option FSEG">Département de Marketing</option>
+                        <option value="DEP12" class="department-option FSEG">Département de Management, Stratégie et Prospective</option>
+                        <option value="DEP13" class="department-option FSEG">Département des Sciences Economiques</option>
+                        <option value="DEP14" class="department-option FSJP">Département de Droit Privé</option>
+                        <option value="DEP15" class="department-option FSJP">Département de Droit Public</option>
+                        <option value="DEP16" class="department-option FSJP">Département de Théorie du Droit et Epistémologie</option>
+                        <option value="DEP17" class="department-option FALSH">Département d' Anglais</option>
+                        <option value="DEP18" class="department-option FALSH">Département d' Arts</option>
+                        <option value="DEP19" class="department-option FALSH">Département de Français</option>
+                        <option value="DEP20" class="department-option FALSH">Département de Géographie</option>
+                        <option value="DEP21" class="department-option FALSH">Département d'Histoire</option>
+                        <option value="DEP22" class="department-option FALSH">Département de Langues et Civilisations Arabes </option>
+                        <option value="DEP23" class="department-option FALSH">Département de Langues et Cultures Camerounaises</option>
+                        <option value="DEP24" class="department-option FALSH">Département de Sociologie et Anthropologie</option>
+                    </select>
+                    <select id="major-student" name="major_student">
+                        <option value="" disabled selected>Choisir votre filière</option>
+                        <!-- Options de filières liées au département sélectionné -->
+                        <option value="FIL1" class="major-option DEP4">Mathématiques</option>
+                        <option value="FIL2" class="major-option DEP4">Informatique</option>
+                    </select>
+                    <select id="level-student" required>
+                        <option value="" disabled selected>Choisir votre niveau</option>
+                        <!-- Options de niveau -->
+                        <option value="Licence">L1</option>
+                        <option value="Licence">L2</option>
+                        <option value="Licence">L3</option>
+                        <option value="Master">Master 1</option>
+                        <option value="Master">Master 2</option>
+                        <option value="Doctorat">Doctorat</option>
+                        <!-- Autres options de niveau -->
+                    </select><br>
+                </div>
+
+                <!-- Champs spécifiques pour enseignants -->
+                <div id="teacher-fields" class="category-fields" style="display: none;">
+                    <select id="school">
+                        <option value="" disabled selected>Choisir une école</option>
+                        <!-- Options d'écoles -->
+                        <option value="Ecole de Génie Chimique et des Industries Minérales (EGCIM)">Ecole de Génie Chimique et des Industries Minérales (EGCIM)</option>
+                        <option value="Ecole de Géologie et d'Exploitation Minière (EGEM)">Ecole de Géologie et d'Exploitation Minière (EGEM)</option>
+                        <option value="Ecole Nationale Supérieure des Sciences Agro-industrielles (ENSAI)">Ecole Nationale Supérieure des Sciences Agro-industrielles (ENSAI)</option>
+                        <option value="Ecole des Sciences et de Médecine vétérinaire (ESMV)">Ecole des Sciences et de Médecine vétérinaire (ESMV)</option>
+                        <option value="Institut Universitaire des Technologies (IUT)">Institut Universitaire des Technologies (IUT)</option>
+                    </select><br>
+                    <select id="faculty-teacher" name="faculty_teacher">
+                        <option value="" disabled selected>Choisir votre faculté</option>
+                        <!-- Options de facultés -->
+                        <option value="FALSH" class="faculty-option">Faculté des Arts des Lettres et des Sciences Humaines (FALSH)</option>
+                        <option value="FS" class="faculty-option">Faculté des Sciences (FS)</option>
+                        <option value="FSE" class="faculty-option">Faculté des Sciences de l'Education (FSE)</option>
+                        <option value="FSEG" class="faculty-option">Faculté des Sciences Economiques et de Gestion (FSEG)</option>
+                        <option value="FSJP" class="faculty-option">Faculté des Sciences Juridiques et Politiques (FSJP)</option>
+                    </select>
+                    <select id="department-teacher" name="department_teacher">
+                        <option value="" disabled selected>Choisir votre département</option>
+                        <option value="DEP1" class="department-option FS">Département de Chimie (CH)</option>
+                        <option value="DEP3" class="department-option FS">Département des Energies Renouvelables (ER) </option>
+                        <option value="DEP4" class="department-option FS">Département de Mathématiques et Informatique (MI) </option>
+                        <option value="DEP5" class="department-option FS">Département de Physique (PH) </option>
+                        <option value="DEP6" class="department-option FS">Département des Sciences Biologiques (BIO) </option>
+                        <option value="DEP7" class="department-option FS">Département des Sciences Biomédicales (SBM) </option>
+                        <option value="DEP8" class="department-option FS">Département des Sciences de la Terre (ST)</option>
+                        <option value="DEP9" class="department-option FS">Département des Sciences et Techniques d'Agriculture Biologiques (STAB)</option>
+                        <option value="DEP10" class="department-option FSEG">Département de Comptabilité et Finance</option>
+                        <option value="DEP11" class="department-option FSEG">Département de Marketing</option>
+                        <option value="DEP12" class="department-option FSEG">Département de Management, Stratégie et Prospective</option>
+                        <option value="DEP13" class="department-option FSEG">Département des Sciences Economiques</option>
+                        <option value="DEP14" class="department-option FSJP">Département de Droit Privé</option>
+                        <option value="DEP15" class="department-option FSJP">Département de Droit Public</option>
+                        <option value="DEP16" class="department-option FSJP">Département de Théorie du Droit et Epistémologie</option>
+                        <option value="DEP17" class="department-option FALSH">Département d' Anglais</option>
+                        <option value="DEP18" class="department-option FALSH">Département d' Arts</option>
+                        <option value="DEP19" class="department-option FALSH">Département de Français</option>
+                        <option value="DEP20" class="department-option FALSH">Département de Géographie</option>
+                        <option value="DEP21" class="department-option FALSH">Département d'Histoire</option>
+                        <option value="DEP22" class="department-option FALSH">Département de Langues et Civilisations Arabes </option>
+                        <option value="DEP23" class="department-option FALSH">Département de Langues et Cultures Camerounaises</option>
+                        <option value="DEP24" class="department-option FALSH">Département de Sociologie et Anthropologie</option>
+                    </select>
+                    <input type="text" id="poste-teacher" placeholder="Poste occupé au sein du département"><br>
+                    <select id="grade-teacher" required>
+                        <option value="" disabled selected>Choisir votre grade</option>
+                        <!-- Options de grade -->
+                        <option value="Assistant">Assistant</option>
+                        <option value="Chargé de Cours">Chargé de Cours</option>
+                        <option value="Maître de Conférences">Maître de Conférences</option>
+                        <option value="Professeur">Professeur</option>
+                        <!-- Autres options de grade -->
+                    </select>
+                </div>
+
+                <!-- Champs spécifiques pour personnel -->
+                <div id="staff-fields" class="category-fields" style="display: none;">
+                    {{ profile_form.as_p }}
+                    <input type="text" id="service-staff" placeholder="A quel service appartenez-vous"><br>
+                    <input type="text" id="poste-staff" placeholder="Poste occupé au sein du service"><br>
+                </div>
+
+            </form>
+            <p style="color: red;">*Veuillez bien vérifier les informations soumises avant de les valider.</p>
+            <input type="submit" value="S'inscrire">
+        </div>
+    </div>
+    <script src="{% static 'js/signup.js' %}"></script>
+</body>
+</html>
